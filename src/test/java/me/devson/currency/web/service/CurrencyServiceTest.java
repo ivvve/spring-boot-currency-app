@@ -16,7 +16,7 @@ public class CurrencyServiceTest {
     @Test
     public void api_정상_호출_테스트() {
         CurrencyApiResponse response = currencyService.getCurrencyFromApi();
-        assertThat(response.getSuccess(), is(true));
+        assertThat(response.isSuccess(), is(true));
         assertThat(response.getSource(), is("USD"));
         assertThat(response.getQuotes().keySet(), hasItems("USDKRW", "USDPHP", "USDJPY"));
     }

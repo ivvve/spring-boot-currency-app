@@ -16,7 +16,6 @@ public class CurrencyService {
 
     public CurrencyApiResponse getCurrencyFromApi() {
         RestTemplate restTemplate = new RestTemplate();
-
         return restTemplate.getForObject(CURRENCY_API_URL + apiQueryString, CurrencyApiResponse.class);
     }
 }
