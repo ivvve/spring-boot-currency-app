@@ -11,7 +11,7 @@ public class CurrencyService {
     private final String apiQueryString;
 
     public CurrencyService(@Value("${api-key}") String apiKey) {
-        this.apiQueryString = "?access_key=" + apiKey;
+        this.apiQueryString = "?source=USD&currencies=KRW,PHP,JPY&access_key=" + apiKey;
     }
 
     public CurrencyApiResponse getCurrencyFromApi() {
