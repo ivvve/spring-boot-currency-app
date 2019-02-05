@@ -58,7 +58,10 @@ const currency = {
 
     getCurrency() {
         return fetch("/currency")
-            .then(response => response.json());
+            .then(response => response.json())
+            .catch(error => {
+                console.log(`서버에서 환율 정보를 가져오는데 실패했습니다. : ${error}`);
+            });
     },
 
     getAmount() {
