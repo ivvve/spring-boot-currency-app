@@ -17,9 +17,16 @@
     <div>환율:
         <span id="exchangeRate"></span>
         <span id="currency"></span>
+        <input id="fineExchangeRate" name="fineExchangeRate" type="text" style="display: none;">
     </div>
-    <div>송금액: <input id="remittance"> USD</div>
-    <button id="submit" type="button">Submit</button>
+    <div>송금액: <input id="remittance"> USD
+        <span id="remittanceAlertMessage" style="display: none; color: red; margin-left: 10px;">송금액이 바르지 않습니다.</span>
+    </div>
+    <button id="submit" type="button" onclick="currency.getAmount()">Submit</button>
+
+    <div id="amount" style="margin-top: 20px;"></div>
+
+<script th:src="@{/js/common.js}"></script>
 <script th:src="@{/js/currency.js}"></script>
 </body>
 </html>
