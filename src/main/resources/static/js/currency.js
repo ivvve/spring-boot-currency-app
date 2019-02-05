@@ -11,6 +11,9 @@ const currency = {
     remittanceAlertMessage: null,
     amount: null,
 
+    isSubmit: false,
+    currencyIntervalId: null,
+
     init() {
         this.country = document.getElementById("country");
         this.exchangeRate = document.getElementById("exchangeRate");
@@ -21,12 +24,19 @@ const currency = {
         this.amount = document.getElementById("amount");
 
         this.country.onchange();
+
+        this.remittance.addEventListener("keyup", function() {
+            currency.isSubmit = false;
+        });
     },
 
     changeCountry(country) {
+        this.clearCurrencyInterval();
         this.clearAmount();
+        this.isSubmit = false;
 
         this.changeCurrency(country);
+        this.currencyInterval();
     },
 
     async changeCurrency(country) {
@@ -53,6 +63,7 @@ const currency = {
 
     getAmount() {
         this.clearAmount();
+        this.isSubmit = false;
 
         this.remittance.value = this.remittance.value.trim();
         let remittance = this.remittance.value;
@@ -68,6 +79,8 @@ const currency = {
             this.showRemittanceAlertMessage();
             return;
         }
+
+        this.isSubmit = true;
 
         const fineExchangeRate = Number(this.fineExchangeRate.value);
         let amount = fineExchangeRate * remittance;
@@ -99,5 +112,21 @@ const currency = {
 
     hideRemittanceAlertMessage() {
         this.remittanceAlertMessage.style.display = "none";
+    },
+
+    currencyInterval() {
+        this.currencyIntervalId = setInterval(() => {
+            const country = this.country.value;
+            this.changeCurrency(country);
+
+            if (this.isSubmit) {
+                this.getAmount();
+            }
+
+        }, 6000 * 10);
+    },
+
+    clearCurrencyInterval() {
+        clearInterval(this.currencyIntervalId);
     }
 };
