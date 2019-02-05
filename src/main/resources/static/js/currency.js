@@ -23,9 +23,14 @@ const currency = {
         this.country.onchange();
     },
 
+    changeCountry(country) {
+        this.clearAmount();
+
+        this.changeCurrency(country);
+    },
+
     async changeCurrency(country) {
         this.clearCurrency();
-        this.clearAmount();
 
         const currencyData = await this.getCurrency();
         let exchangeRate = currencyData.quotes["USD" + country];
@@ -36,6 +41,7 @@ const currency = {
 
     showCurrency(exchangeRate, country) {
         exchangeRate = Number(exchangeRate).toFixed(2);
+        exchangeRate = Number(exchangeRate).toLocaleString();
         this.exchangeRate.innerText = exchangeRate;
         this.currency.innerText = country + "/USD";
     },
