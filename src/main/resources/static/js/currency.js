@@ -29,9 +29,12 @@ const currency = {
 
         const currencyData = await this.getCurrency();
         let exchangeRate = currencyData.quotes["USD" + country];
-
         this.fineExchangeRate.value = exchangeRate;
 
+        this.showCurrency(exchangeRate, country);
+    },
+
+    showCurrency(exchangeRate, country) {
         exchangeRate = Number(exchangeRate).toFixed(2);
         this.exchangeRate.innerText = exchangeRate;
         this.currency.innerText = country + "/USD";
@@ -80,11 +83,15 @@ const currency = {
     },
 
     clearAmount() {
-        this.remittanceAlertMessage.style.display = "none";
+        this.hideRemittanceAlertMessage();
         this.amount.innerText = "";
     },
 
     showRemittanceAlertMessage() {
         this.remittanceAlertMessage.style.display = "inline";
+    },
+
+    hideRemittanceAlertMessage() {
+        this.remittanceAlertMessage.style.display = "none";
     }
 };
