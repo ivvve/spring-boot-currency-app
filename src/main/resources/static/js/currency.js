@@ -88,7 +88,7 @@ const currency = {
     },
 
     showRemittanceAlertMessage() {
-        this.remittanceAlertMessage.style.display = "inline";
+        this.remittanceAlertMessage.style.display = "block";
     },
 
     hideRemittanceAlertMessage() {
