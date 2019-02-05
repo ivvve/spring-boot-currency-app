@@ -6,19 +6,20 @@
 </head>
 <body>
     <h1>환율 계산</h1>
-    <p>송금국가: 미국(USD)</p>
-    <p>수취국가:
-        <select>
-            <option>한국(KRW)</option>
-            <option>일본(JPY)</option>
-            <option>필리핀(PHP)</option>
+    <div>송금국가: 미국(USD)</div>
+    <div>수취국가:
+        <select id="country" name="country" onchange="currency.changeCurrency(this.value)">
+            <option value="KRW">한국(KRW)</option>
+            <option value="JPY">일본(JPY)</option>
+            <option value="PHP">필리핀(PHP)</option>
         </select>
-    </p>
-    <p>환율:
-        <span></span>
-        <span></span>
-    </p>
-    <p>송금액: <input type="number"> USD</p>
-    <button type="button">Submit</button>
+    </div>
+    <div>환율:
+        <span id="exchangeRate"></span>
+        <span id="currency"></span>
+    </div>
+    <div>송금액: <input id="remittance"> USD</div>
+    <button id="submit" type="button">Submit</button>
+<script th:src="@{/js/currency.js}"></script>
 </body>
 </html>
